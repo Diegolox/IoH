@@ -1,5 +1,7 @@
 # Preguntas y respuestas del marco PICOS
 
+Estas notas recogen las preguntas iniciales sobre el prototipo y la validación. El alcance de la revisión bibliográfica y sus criterios de selección se concretan en el [primer entregable](../README.md).
+
 ## P — Población
 
 **Pregunta**
