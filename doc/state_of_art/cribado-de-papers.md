@@ -76,8 +76,8 @@ AND ("Full Text & Metadata":"wrist shot" OR "Full Text & Metadata":stickhandl* O
 
 | Consulta | Resultados mostrados | PDF aportados | Filas del cribado |
 | --- | ---: | ---: | --- |
-| 1 | 24 | Elicit, PubMed | 26–28, excluidos |
-| 2 | 12 | Elicit, PubMed | 3, incluido, y 26–36, excluidos |
+| 1 | 24 | 3 | 26–28, excluidos |
+| 2 | 12 | 12 | 3, incluido, y 26–36, excluidos |
 
 Los 15 PDF descargados corresponden a 12 publicaciones distintas. La consulta 2 volvió a recuperar los tres artículos de la consulta 1 y también a Hardegger, ya archivado. Quedan por identificar 21 resultados de la consulta 1, correspondientes a 20 congresos y un artículo de revista. Hace falta el listado de esa consulta para cotejar sus títulos y cribar los que falten.
 
