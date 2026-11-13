@@ -27,3 +27,7 @@ El criterio de acierto se comprueba por gesto mediante la sensibilidad, calculad
 Un registro automático permitiría al entrenador analizar el rendimiento del equipo después del partido y detectar patrones por jugador, como recibir el disco muchas veces y realizar pocos pases, sin anotar las acciones a mano. La revisión orientará la elección de sensores y su ubicación para una primera prueba de gestos en estático con jugadores de hockey en línea de 15 a 20 años, de nivel intermedio a avanzado, en una pista de hormigón.
 
 [Preguntas y respuestas del proyecto](notas/preguntas-y-respuestas.md) · [Guía metodológica del profesor](../doc_prof/metodologia_EdC.docx)
+
+## Entregable 2
+
+[Cribado de papers](cribado-de-papers.md) · [Hoja de cribado](cribado-entregable-2.csv)
