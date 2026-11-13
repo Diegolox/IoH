@@ -2,7 +2,7 @@
 
 > **Opinión de un agente de IA.** Las decisiones quedan pendientes de revisión por Diego.
 
-Se aplicó el [PICOS del primer entregable](README.md) a las 20 referencias facilitadas y a cinco publicaciones de Elicit que ya estaban en la carpeta. La lista de Consensus contenía 20 DOI distintos. Cinco referencias coincidían con PDF existentes y se reutilizaron. Se guardaron 14 PDF nuevos y quedó un artículo pendiente de descarga. Ese lote y los PDF previos sumaban 25 publicaciones distintas. Con los tres PDF de IEEE Xplore, el cribado reúne 28 publicaciones, 27 con texto completo local.
+Se aplicó el [PICOS del primer entregable](README.md) a las 20 referencias facilitadas y a cinco publicaciones de Elicit que ya estaban en la carpeta. La lista de Consensus contenía 20 DOI distintos. Cinco referencias coincidían con PDF existentes y se reutilizaron. Se guardaron 14 PDF nuevos y quedó un artículo pendiente de descarga. Ese lote y los PDF previos sumaban 25 publicaciones distintas. Con los once PDF nuevos de IEEE Xplore, el cribado reúne 36 publicaciones, 35 con texto completo local.
 
 **Origen.** Elicit identifica los PDF que ya estaban en el proyecto antes de esta descarga. Consensus identifica los 14 PDF nuevos de la lista proporcionada. La etiqueta indica la procedencia bibliográfica, aunque el archivo se haya obtenido de la editorial o de un repositorio universitario. Los cinco PDF reutilizados conservan la etiqueta Elicit.
 
@@ -40,10 +40,18 @@ Se aplicó el [PICOS del primer entregable](README.md) a las 20 referencias faci
 | 26 | [Improved Generalization of Probabilistic Movement Primitives for Manipulation Trajectories — Yao et al. (2024)](https://doi.org/10.1109/LRA.2023.3333741) · [PDF](papers/descartados/Improved%20Generalization%20of%20Probabilistic%20Movement%20Primitives%20for%20Manipulation%20Trajectories.pdf) | IEEE Xplore | No | No | — | No | Sí | **Excluido** | Evalúa aprendizaje por demostración en un robot. El lanzamiento de un disco es una tarea de manipulación robótica. Motivo principal P. |
 | 27 | [Optimal Activity Recognition Framework Based on Improvement of Regularized Neighborhood Component Analysis (RNCA) — Shahar et al. (2024)](https://doi.org/10.1109/ACCESS.2024.3413822) · [PDF](papers/descartados/Optimal%20Activity%20Recognition%20Framework%20Based%20on%20Improvement%20of%20Regularized%20Neighborhood%20Component%20Analysis%20-RNCA-.pdf) | IEEE Xplore | No | Sí | ? | Parcial | Sí | **Excluido** | Evalúa cuatro IMU a 128 Hz en 43 jugadores de hockey sobre hierba. Compara montajes y clasifica pases, recepciones y regates. Sirve como referencia metodológica. Motivo principal P. |
 | 28 | [Sport Type Classification of Mobile Videos — Cricri et al. (2014)](https://doi.org/10.1109/TMM.2014.2307552) · [PDF](papers/descartados/Sport%20Type%20Classification%20of%20Mobile%20Videos.pdf) | IEEE Xplore | No | No | — | No | Sí | **Excluido** | Clasifica el deporte de vídeos grabados por espectadores. Los sensores del móvil registran el movimiento de la cámara. Motivo principal I. |
+| 29 | [Ensemble Fusion for Inertial-Sensor-Based Field Hockey Activity Recognition (Shahar et al., 2025)](https://doi.org/10.1109/ICEEI68459.2025.11330997) [· PDF](papers/descartados/Ensemble%20Fusion%20for%20Inertial-Sensor-Based%20Field%20Hockey%20Activity%20Recognition.pdf) | IEEE Xplore | No | Sí | Sí | Parcial | Sí | **Excluido** | Valida por jugador (LOSO) un clasificador de seis gestos de hockey sobre hierba, entre ellos pase, recepción y regate, con cuatro IMU corporales. La fusión alcanza 86,0 % de exactitud global. Usa datos de trabajos anteriores. Referencia metodológica. Motivo principal P. |
+| 30 | [Adapting Hidden Markov Models and Local Alignment Algorithms for Real-Time Lineup Change Decisioning in Ice Hockey (Biró et al., 2026)](https://doi.org/10.1109/SAMI68106.2026.11420405) [· PDF](papers/descartados/Adapting%20Hidden%20Markov%20Models%20and%20Local%20Alignment%20Algorithms%20for%20Real-Time%20Lineup%20Change%20Decisioning%20in%20Ice%20Hockey.pdf) | IEEE Xplore | — | No | — | No | No | **Excluido** | Recomienda cambios de línea en hockey sobre hielo con modelos de Markov y alineación local. La evaluación usa datos sintéticos. Motivo principal I. |
+| 31 | A Platform and Methodology Enabling Real-Time Motion Pattern Recognition on Low-Power Smart Devices (Sarbishei, 2019) [· PDF](papers/descartados/A%20Platform%20and%20Methodology%20Enabling%20Real-Time%20Motion%20Pattern%20Recognition%20on%20Low-Power%20Smart%20Devices.pdf) | IEEE Xplore | No | Parcial | — | No | Sí | **Excluido** | Implementa reconocimiento inercial en tiempo real en un microcontrolador. Evalúa actividades físicas con conjuntos de referencia y menciona el tiro de hockey como aplicación posible. Motivo principal P. |
+| 32 | An agility test to measure performance in Para ice hockey Test presentation and test-retest reliability (Rosso et al., 2018) [· PDF](papers/descartados/An%20agility%20test%20to%20measure%20performance%20in%20Para%20ice%20hockey%20Test%20presentation%20and%20test-retest%20reliability.pdf) | IEEE Xplore | Sí | No | — | No | Sí | **Excluido** | Evalúa la fiabilidad de un circuito de curvas en seis deportistas de hockey sobre hielo adaptado. Mide tiempos y ángulos durante el recorrido. Motivo principal I. |
+| 33 | Augmenting Live Broadcast Sports with 3D Tracking Information (Cavallaro et al., 2011) [· PDF](papers/descartados/Augmenting%20Live%20Broadcast%20Sports%20with%203D%20Tracking%20Information.pdf) | IEEE Xplore | Sí | No | — | No | Sí | **Excluido** | Describe seguimiento del disco y gráficos superpuestos en retransmisiones. El resultado es la localización de objetos para televisión. Motivo principal I. |
+| 34 | Robot-Supported Multiplayer Rehabilitation Feasibility Study of Haptically Linked Patient-Spouse Training (Baur et al., 2018) [· PDF](papers/descartados/Robot-Supported%20Multiplayer%20Rehabilitation%20Feasibility%20Study%20of%20Haptically%20Linked%20Patient-Spouse%20Training.pdf) | IEEE Xplore | No | No | — | No | Sí | **Excluido** | Evalúa rehabilitación robótica posictus con un juego háptico de air hockey. Motivo principal P. |
+| 35 | [Detecting Violent Arm Movements Using CNN-LSTM (Sarcar y Yousuf, 2021)](https://doi.org/10.1109/EICT54103.2021.9733510) [· PDF](papers/descartados/Detecting%20Violent%20Arm%20Movements%20Using%20CNN-LSTM.pdf) | IEEE Xplore | Sí | No | Sí | No | Sí | **Excluido** | Clasifica violencia a partir de vídeo en el conjunto Hockey Fight. La salida es pelea o ausencia de pelea. Motivo principal I. |
+| 36 | [The Robockey Cup (Fiene, 2010)](https://doi.org/10.1109/MRA.2010.937854) [· PDF](papers/descartados/The%20Robockey%20Cup.pdf) | IEEE Xplore | No | No | — | No | No | **Excluido** | Describe una actividad docente en la que se construyen robots autónomos que juegan al hockey. Motivo principal P. |
 
 ## Búsquedas en IEEE Xplore
 
-**Consulta 1.** Descarga del 13 de noviembre de 2026. El lote contiene 3 PDF, 0 incluidos y 3 excluidos (filas 26–28). Quedan por confirmar el total de resultados que mostró la base de datos y los filtros aplicados.
+**Consulta 1.** Descarga del 13 de noviembre de 2026. IEEE Xplore mostró 24 resultados sin filtros (20 de congresos y 4 de revistas científicas). Diego seleccionó solo resultados de revistas para la descarga. El lote local contiene 3 PDF, todos excluidos (filas 26–28). Queda por identificar el cuarto resultado de revista.
 
 ```text
 ("All Metadata":hockey)
@@ -53,12 +61,26 @@ AND ("All Metadata":acceleromet* OR "All Metadata":inertial
  OR "All Metadata":instrumented)
 ```
 
-**Consulta 2.** Pendiente de ejecutar. Busca los sensores y gestos también en el texto completo.
+**Consulta 2.** Descarga del 13 de noviembre de 2026. IEEE Xplore mostró 12 resultados sin filtros (7 de congresos, 3 de revistas científicas y 2 de revistas de divulgación profesional, categoría Magazine de IEEE Xplore). Se archivaron 12 PDF en dos ZIP (10 y 2). Cuatro publicaciones ya estaban en la tabla y ocho eran nuevas. Las ocho nuevas quedaron excluidas (filas 29–36).
 
 ```text
 "All Metadata":hockey
 AND ("Full Text & Metadata":acceleromet* OR "Full Text & Metadata":inertial OR "Full Text & Metadata":IMU)
 AND ("Full Text & Metadata":"wrist shot" OR "Full Text & Metadata":stickhandl* OR "Full Text & Metadata":dribbl* OR "Full Text & Metadata":passing OR "Full Text & Metadata":"pass reception" OR "Full Text & Metadata":"receiving the puck")
+```
+
+**Duplicados de la consulta 2.** Hardegger et al. (2015), fila 3, ya incluido en el PICOS. Shahar et al. (2024, RNCA), fila 27, Cricri et al. (2014), fila 28, y Yao et al. (2024), fila 26, ya excluidos. Se conservó una copia local por publicación.
+
+## Entregable del Paso 2
+
+La [hoja de cribado en formato CSV](cribado-entregable-2.csv) reúne las 36 publicaciones con título, autores, año, decisión y motivo de exclusión. El cribado preliminar incluye cuatro publicaciones, con PDF local en las filas 1, 2, 3 y 21. La carpeta de textos útiles también contiene un artículo metodológico de hockey sobre hierba (fila 6).
+
+Las dos cadenas ejecutadas en IEEE Xplore figuran arriba. IEEE Xplore mostró 24 y 12 resultados, respectivamente, sin filtros. Los lotes locales contienen 3 y 12 PDF, respectivamente. La lista facilitada de Consensus tenía 20 referencias, con el total de resultados de la búsqueda por confirmar.
+
+**PubMed como segunda base de datos.** Cadena propuesta, pendiente de ejecutar y registrar el total. Busca hockey y términos de instrumentación inercial en título, resumen y palabras clave del autor. [Ayuda de PubMed](https://pubmed.ncbi.nlm.nih.gov/help/#search-tags)
+
+```text
+hockey[tiab] AND (acceleromet*[tiab] OR inertial[tiab] OR IMU[tiab] OR IMUs[tiab] OR gyroscop*[tiab])
 ```
 
 ## Síntesis para IoH
