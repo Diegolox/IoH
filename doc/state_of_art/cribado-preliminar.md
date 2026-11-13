@@ -2,7 +2,7 @@
 
 > **Opinión de un agente de IA.** Las decisiones quedan pendientes de revisión por Diego.
 
-Se aplicó el [PICOS del primer entregable](README.md) a las 20 referencias facilitadas y a cinco publicaciones de Elicit que ya estaban en la carpeta. La lista de Consensus contenía 20 DOI distintos. Cinco referencias coincidían con PDF existentes y se reutilizaron. Se guardaron 14 PDF nuevos y quedó un artículo pendiente de descarga. En total hay 25 publicaciones distintas, 24 con texto completo local.
+Se aplicó el [PICOS del primer entregable](README.md) a las 20 referencias facilitadas y a cinco publicaciones de Elicit que ya estaban en la carpeta. La lista de Consensus contenía 20 DOI distintos. Cinco referencias coincidían con PDF existentes y se reutilizaron. Se guardaron 14 PDF nuevos y quedó un artículo pendiente de descarga. Ese lote y los PDF previos sumaban 25 publicaciones distintas. Con los tres PDF de IEEE Xplore, el cribado reúne 28 publicaciones, 27 con texto completo local.
 
 **Origen.** Elicit identifica los PDF que ya estaban en el proyecto antes de esta descarga. Consensus identifica los 14 PDF nuevos de la lista proporcionada. La etiqueta indica la procedencia bibliográfica, aunque el archivo se haya obtenido de la editorial o de un repositorio universitario. Los cinco PDF reutilizados conservan la etiqueta Elicit.
 
@@ -37,6 +37,29 @@ Se aplicó el [PICOS del primer entregable](README.md) a las 20 referencias faci
 | 23 | [Automatic Edge Error Judgment in Figure Skating Using 3D Pose Estimation from a Monocular Camera and IMUs](papers/descartados/Automatic%20Edge%20Error%20Judgment%20in%20Figure%20Skating%20Using%203D%20Pose%20Estimation%20from%20a%20Monocular%20Camera%20and%20IMUs.pdf) | Elicit | No | No | — | No | Sí | **Excluido** | Evalúa el canto del patín en el salto Lutz de patinaje artístico. Motivo principal P. |
 | 24 | [Disseny i implementació d'un sistema de mesura per l'estudi d'acceleracions en hoquei](papers/descartados/Disseny%20i%20implementaci%C3%B3%20d'un%20sistema%20de%20mesura%20per%20l'estudi%20d'acceleracions%20en%20hoquei.pdf) | Elicit | No | Parcial | No | No | Sí | **Excluido** | TFG con acelerómetro en el palo en hockey sobre patines con pelota. Analiza perfiles de tiro y diferencias entre ataque y defensa. Útil como referencia de montaje. Motivo principal P. |
 | 25 | [Reliability, Validity, and Sensitivity of Spatiotemporal Parameters in Bandy Sprint Skating](papers/descartados/Reliability%2C%20Validity%2C%20and%20Sensitivity%20of%20Spatiotemporal%20Parameters%20in%20Bandy%20Sprint%20Skating%20Using%20Skate-Mounted%20Inertial%20Measurement%20Units.pdf) | Elicit | No | No | — | No | Sí | **Excluido** | Valida métricas de zancada y deslizamiento en esprints de bandy con IMU en patines. Motivo principal P. |
+| 26 | [Improved Generalization of Probabilistic Movement Primitives for Manipulation Trajectories — Yao et al. (2024)](https://doi.org/10.1109/LRA.2023.3333741) · [PDF](papers/descartados/Improved%20Generalization%20of%20Probabilistic%20Movement%20Primitives%20for%20Manipulation%20Trajectories.pdf) | IEEE Xplore | No | No | — | No | Sí | **Excluido** | Evalúa aprendizaje por demostración en un robot. El lanzamiento de un disco es una tarea de manipulación robótica. Motivo principal P. |
+| 27 | [Optimal Activity Recognition Framework Based on Improvement of Regularized Neighborhood Component Analysis (RNCA) — Shahar et al. (2024)](https://doi.org/10.1109/ACCESS.2024.3413822) · [PDF](papers/descartados/Optimal%20Activity%20Recognition%20Framework%20Based%20on%20Improvement%20of%20Regularized%20Neighborhood%20Component%20Analysis%20-RNCA-.pdf) | IEEE Xplore | No | Sí | ? | Parcial | Sí | **Excluido** | Evalúa cuatro IMU a 128 Hz en 43 jugadores de hockey sobre hierba. Compara montajes y clasifica pases, recepciones y regates. Sirve como referencia metodológica. Motivo principal P. |
+| 28 | [Sport Type Classification of Mobile Videos — Cricri et al. (2014)](https://doi.org/10.1109/TMM.2014.2307552) · [PDF](papers/descartados/Sport%20Type%20Classification%20of%20Mobile%20Videos.pdf) | IEEE Xplore | No | No | — | No | Sí | **Excluido** | Clasifica el deporte de vídeos grabados por espectadores. Los sensores del móvil registran el movimiento de la cámara. Motivo principal I. |
+
+## Búsquedas en IEEE Xplore
+
+**Consulta 1.** Descarga del 13 de noviembre de 2026. El lote contiene 3 PDF, 0 incluidos y 3 excluidos (filas 26–28). Quedan por confirmar el total de resultados que mostró la base de datos y los filtros aplicados.
+
+```text
+("All Metadata":hockey)
+AND ("All Metadata":acceleromet* OR "All Metadata":inertial
+ OR "All Metadata":IMU OR "All Metadata":IMUs
+ OR "All Metadata":gyroscop* OR "All Metadata":wearable*
+ OR "All Metadata":instrumented)
+```
+
+**Consulta 2.** Pendiente de ejecutar. Busca los sensores y gestos también en el texto completo.
+
+```text
+"All Metadata":hockey
+AND ("Full Text & Metadata":acceleromet* OR "Full Text & Metadata":inertial OR "Full Text & Metadata":IMU)
+AND ("Full Text & Metadata":"wrist shot" OR "Full Text & Metadata":stickhandl* OR "Full Text & Metadata":dribbl* OR "Full Text & Metadata":passing OR "Full Text & Metadata":"pass reception" OR "Full Text & Metadata":"receiving the puck")
+```
 
 ## Síntesis para IoH
 
