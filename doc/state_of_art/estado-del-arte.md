@@ -115,8 +115,6 @@ La prioridad del proyecto requiere observar simultáneamente precisión por gest
 | Extracción asistida | NotebookLM mezcló resultados de K-NN y MLP en P3, cifras de ubicaciones en P6 y paginaciones ajenas a los PDF locales. Las correcciones constan en la matriz. |
 | Cobertura de la revisión | Quedan registros de IEEE Xplore por identificar y decisiones personales de cribado por completar. El uso de Full text en PubMed puede condicionar qué documentos se recuperan. |
 
-Los niveles de verificación distinguen no verificado, NotebookLM y Leído. La matriz conserva la procedencia y los contrastes puntuales del agente con los PDF. La revisión personal de Diego sigue pendiente y ninguna fila se ha marcado como Leído. Las citas literales extraídas por NotebookLM necesitan comprobación del texto y la página antes de utilizarlas en la memoria.
-
 ## Conclusiones
 
 1. **La instrumentación reducida tiene respaldo experimental.** Los resultados de P1 con dos manos, P6 con sensores individuales y P7 con una IMU en palo justifican comparar palo y muñeca en el prototipo. La ubicación más conveniente deberá determinarse con los cuatro gestos y el mismo protocolo.
