@@ -62,6 +62,8 @@ La recepción presenta el vacío más claro respecto al contexto de hockey líne
 
 ### Ubicación y número de sensores
 
+La [comparación de resultados según la ubicación de los sensores](comparacion-ubicacion-sensores.md) desarrolla las diferencias entre cuerpo completo, manos, muñecas, esternón y palo, con tablas por estudio y sus límites de interpretación.
+
 ![Comparación de F1 con 17 sensores y dos sensores en manos en Tremblay](figuras/tremblay-configuracion-f1.png)
 
 **Figura 2.** Comparación dentro de P1 con el mismo tipo de modelo y protocolo. Las barras muestran media y desviación estándar de diez particiones por jugador. El F1 global es ponderado. Las diferencias entre configuraciones son descriptivas y requieren análisis estadístico para valorar su consistencia. Fuente en P1, PDF p. 9, tablas 3–4.
