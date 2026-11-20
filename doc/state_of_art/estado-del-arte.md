@@ -76,6 +76,8 @@ P1 muestra que un montaje reducido en ambas manos conserva capacidad de clasific
 
 ### Señales, frecuencia y resolución
 
+La [comparación de resolución de datos y número de decimales](comparacion-resolucion-datos.md) reúne las frecuencias, bits y rangos localizados en los papers, distingue el redondeo de la adquisición y propone cómo evaluar estas variables en el prototipo.
+
 Los trabajos seleccionados utilizan frecuencias entre 100 y 240 Hz. La evidencia aporta referencias de adquisición, pero mezcla poblaciones, ubicaciones y algoritmos que impiden atribuir el rendimiento a la frecuencia por sí sola. P7 demuestra clasificación con procesamiento a 100 Hz. P3 trabaja a 128 Hz y P4 y P6 a 200 Hz. P1 y P2 usan 240 Hz. Las galgas del palo de P5 se registran a 400 Hz, una frecuencia correspondiente a otra señal del sistema. [P1–P7](#referencias).
 
 La resolución en bits, el rango de medida y la frecuencia de muestreo describen propiedades distintas. La extracción registra 16 bits para AX6 en P7 y datos incompletos sobre resolución para los demás montajes. La comparación de resoluciones del prototipo deberá concretar cuál de estas variables se modifica. En P1 y P2, la entrada de aceleración sin gravedad depende del procesamiento Xsens. La retirada de giróscopo o magnetómetro exige comprobar su papel en la generación de esa señal antes de interpretar una ablación de canales. [P1, P2 y P7](#referencias).
