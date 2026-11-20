@@ -31,3 +31,7 @@ Un registro automático permitiría al entrenador analizar el rendimiento del eq
 ## Entregable 2
 
 [Cribado de Diego](cribado-de-papers.md) · [CSV de Diego](cribado-de-papers.csv) · [Cribado de IA](cribado-de-papers-ia.md) · [CSV de IA](cribado-entregable-2.csv)
+
+## Entregable del Paso 3
+
+[Informe de extracción y análisis](entregable-paso-3.md) · [Hoja de cálculo con indicadores y nivel de verificación](entregable-paso-3.xlsx)
