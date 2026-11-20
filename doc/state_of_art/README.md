@@ -30,4 +30,4 @@ Un registro automático permitiría al entrenador analizar el rendimiento del eq
 
 ## Entregable 2
 
-[Cribado de papers](cribado-de-papers.md) · [Hoja de cribado](cribado-entregable-2.csv)
+[Cribado de Diego](cribado-de-papers.md) · [CSV de Diego](cribado-de-papers.csv) · [Cribado de IA](cribado-de-papers-ia.md) · [CSV de IA](cribado-entregable-2.csv)
