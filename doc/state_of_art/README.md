@@ -28,10 +28,14 @@ Un registro automático permitiría al entrenador analizar el rendimiento del eq
 
 [Preguntas y respuestas del proyecto](notas/preguntas-y-respuestas.md) · [Guía metodológica del profesor](../doc_prof/metodologia_EdC.docx)
 
+## Síntesis del estado del arte
+
+[Resumen con análisis, gráficas, conclusiones y referencias](estado-del-arte.md)
+
 ## Entregable 2
 
-[Cribado de Diego](cribado-de-papers.md) · [CSV de Diego](cribado-de-papers.csv) · [Cribado de IA](cribado-de-papers-ia.md) · [CSV de IA](cribado-entregable-2.csv)
+[Cribado de Diego](cribado-de-papers.md) · [CSV de Diego](cribado-de-papers.csv) · [Cribado de IA](cribado-de-papers-ia.md)
 
 ## Entregable del Paso 3
 
-[Informe de extracción y análisis](entregable-paso-3.md) · [Hoja de cálculo con indicadores y nivel de verificación](entregable-paso-3.xlsx)
+[Informe de extracción y análisis](entregable-paso-3.md) · [Hoja de cálculo con indicadores y nivel de verificación](matriz-de-evidencia-hockey-inercial.xlsx)

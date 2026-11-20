@@ -2,7 +2,7 @@
 
 Este informe desarrolla el Paso 3 del estado de la cuestión sobre detección de gestos de hockey mediante sensores inerciales. Reúne las siete publicaciones retenidas en el cribado personal de Diego, las tres respuestas de NotebookLM y una revisión crítica realizada por un agente de IA. Los datos sirven para comparar adquisición, procesamiento, evaluación y utilidad para un experimento de hockey línea.
 
-La [hoja de cálculo del Paso 3](entregable-paso-3.xlsx) contiene los indicadores y datos extraídos, con una columna de nivel de verificación. Las tablas del informe incluyen las características de los siete trabajos, las doce configuraciones agrupadas de la extracción y los resultados numéricos con su protocolo. Las distintas publicaciones y configuraciones pueden compartir participantes o datos, por lo que sus filas no representan estudios independientes adicionales.
+La [hoja de cálculo del Paso 3](matriz-de-evidencia-hockey-inercial.xlsx) contiene los indicadores y datos extraídos, con una columna de nivel de verificación. Las tablas del informe incluyen las características de los siete trabajos, las doce configuraciones agrupadas de la extracción y los resultados numéricos con su protocolo. Las distintas publicaciones y configuraciones pueden compartir participantes o datos, por lo que sus filas no representan estudios independientes adicionales.
 
 ## Procedencia y nivel de verificación
 
