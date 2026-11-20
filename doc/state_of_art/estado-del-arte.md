@@ -54,7 +54,7 @@ Los identificadores P1 a P7 siguen la extracción de NotebookLM. Cada porcentaje
 
 ![Cobertura de los cuatro gestos objetivo en las publicaciones](figuras/cobertura-gestos.png)
 
-**Figura 1.** Cobertura descriptiva a partir de los objetivos y clases de P1–P7. La celda vacía indica ausencia de un resultado específico en la extracción. Puck control en P2 agrupa una actividad más amplia que el regate. P4 analiza parámetros de tiros ya identificados. P7 evalúa el regate como clase de segmentos y filtra sus picos en la demostración continua de tiros.
+**Figura 1.** Cada fila corresponde a un paper y cada columna a un gesto. Las celdas azules señalan que el gesto se evalúa como una categoría propia. «Sin resultado específico» indica que la extracción no aporta una evaluación separada de ese movimiento. Léger estudia parámetros de tiros ya identificados y Phillips utiliza una categoría más amplia de control del disco. En Vleugels, el regate se evalúa por segmentos y sus picos se filtran en la demostración continua de tiros. La figura muestra qué se estudia, sin representar el porcentaje de acierto.
 
 La recepción presenta el vacío más claro respecto al contexto de hockey línea. Los dos estudios de hierba la incluyen entre sus clases y aportan métodos de adquisición y clasificación. Su rendimiento necesita comprobarse con disco, palo, superficie y población del proyecto. El corpus también deja pendiente la validación conjunta de los cuatro gestos como eventos en una misma sesión continua de hockey línea. [P1–P7](#referencias).
 
