@@ -1,89 +1,110 @@
+// XIAO nRF52840 Sense. Core: Seeed nRF52 Boards (NO mbed).
+// Libreria: Seeed Arduino LSM6DS3. Bluefruit viene con el core.
 #include <Arduino.h>
-#include <Adafruit_TinyUSB.h>  // Puerto serie USB del core de Seeed/Adafruit.
+#include <Adafruit_TinyUSB.h>
 #include <bluefruit.h>
+#include <LSM6DS3.h>
+#include <math.h>
+#include <Wire.h>
 
-namespace {
-constexpr uint32_t kSerialBaud = 115200;
-constexpr uint32_t kSampleIntervalMs = 5000;
-constexpr uint32_t kHeartbeatPeriodMs = 1000;
-constexpr uint32_t kHeartbeatPulseMs = 100;
-// Indice Arduino del core Seeed/Adafruit: D23 corresponde a P0.17 (~CHG).
-constexpr uint8_t kChargeStatusPin = 23;
-constexpr uint8_t kAdcSamples = 16;
-constexpr float kAdcFullScaleMv = 3600.0f;  // AR_INTERNAL: 0.6 V / (1/6).
-constexpr float kBatteryDivider = (1000.0f + 510.0f) / 510.0f;
-uint32_t lastSampleMs = 0;
-bool firstSample = true;
-BLEUart batteryUart;
+// CAMBIA ESTAS DOS VARIABLES y vuelve a cargar el programa:
+const uint16_t ACCEL_RANGE_G = 16;   // +/- 2, 4, 8 o 16 g. Sube si satura.
+const uint16_t GYRO_RANGE_DPS = 2000; // +/- 125, 245, 500, 1000 o 2000 grados/s.
+// Mayor rango = admite movimientos mayores, pero menor sensibilidad.
 
-uint32_t readBatteryMv() {
-    // El divisor de 1 Mohm / 510 kohm requiere una adquisicion larga.
-    analogRead(PIN_VBAT);  // Descarta la primera conversion.
-    uint32_t total = 0;
-    for (uint8_t i = 0; i < kAdcSamples; ++i) {
-        total += analogRead(PIN_VBAT);
+LSM6DS3 imu(I2C_MODE, 0x6A);
+BLEService service("ac450001-8c4d-4e82-a36d-2715dca20104");
+BLECharacteristic imuData("ac450002-8c4d-4e82-a36d-2715dca20104");
+
+// 18 bytes little-endian. Python usa struct.Struct('<IH6h').
+struct __attribute__((packed)) Sample {
+  uint32_t time_us;
+  uint16_t sequence;
+  int16_t ax, ay, az; // milesimas de g
+  int16_t gx, gy, gz; // decimas de grado/s
+};
+static_assert(sizeof(Sample) == 18, "Formato BLE incorrecto");
+uint16_t sequence = 0;
+QueueHandle_t samples;
+volatile uint32_t queueDrops = 0;
+
+// Solo esta tarea toca la IMU. Bluetooth puede esperar sin detener la lectura.
+void readIMU(void*) {
+  while (true) {
+    uint8_t status = 0;
+    if (imu.readRegister(&status, 0x1E) == IMU_SUCCESS && (status & 3) == 3) {
+      uint32_t stamp = micros();
+      int16_t raw[6] = {};
+      if (imu.readRegisterRegion((uint8_t*)raw, 0x22, sizeof(raw)) == IMU_SUCCESS) {
+        Sample s;
+        s.time_us = stamp;
+        s.sequence = sequence++;
+        s.ax = lroundf(imu.calcAccel(raw[3]) * 1000);
+        s.ay = lroundf(imu.calcAccel(raw[4]) * 1000);
+        s.az = lroundf(imu.calcAccel(raw[5]) * 1000);
+        s.gx = lroundf(imu.calcGyro(raw[0]) * 10);
+        s.gy = lroundf(imu.calcGyro(raw[1]) * 10);
+        s.gz = lroundf(imu.calcGyro(raw[2]) * 10);
+        if (Bluefruit.connected() && imuData.notifyEnabled()) {
+          if (xQueueSend(samples, &s, 0) != pdTRUE) queueDrops++;
+        }
+      }
     }
-    const float average = static_cast<float>(total) / kAdcSamples;
-    return static_cast<uint32_t>(average * kAdcFullScaleMv * kBatteryDivider / 4095.0f + 0.5f);
+    delay(1); // Cede CPU; no espera a Bluetooth ni marca la frecuencia de la IMU.
+  }
 }
 
-void startBluetooth() {
-    Bluefruit.begin();
-    Bluefruit.autoConnLed(false);
-    Bluefruit.setName("IoH-Battery");
-    batteryUart.begin();
-    Bluefruit.Advertising.addFlags(BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE);
-    Bluefruit.Advertising.addService(batteryUart);
-    Bluefruit.ScanResponse.addName();
-    Bluefruit.Advertising.restartOnDisconnect(true);
-    Bluefruit.Advertising.setInterval(160, 1600);  // 100 ms / 1 s.
-    Bluefruit.Advertising.setFastTimeout(30);
-    Bluefruit.Advertising.start(0);
+void onConnect(uint16_t handle) {
+  // Solicitud explicita: setConnInterval solo establece la preferencia.
+  Bluefruit.Connection(handle)->requestConnectionParameter(12, 0); // 15 ms
 }
-}  // namespace
 
 void setup() {
-    // Mantener LOW: Seeed desaconseja deshabilitar el divisor durante la carga.
-    digitalWrite(VBAT_ENABLE, LOW);
-    pinMode(VBAT_ENABLE, OUTPUT);
-    // Alta impedancia, sin pull: selecciona aproximadamente 50 mA (0.2 C).
-    pinMode(PIN_CHARGING_CURRENT, INPUT);
-    pinMode(kChargeStatusPin, INPUT_PULLUP);
-    analogReference(AR_INTERNAL);
-    analogReadResolution(12);
-    analogSampleTime(40);
-    analogCalibrateOffset();
-    delay(10);
+  Serial.begin(115200); // No esperar al USB: funciona tambien con bateria.
+  imu.settings.accelRange = ACCEL_RANGE_G;
+  imu.settings.gyroRange = GYRO_RANGE_DPS;
+  imu.settings.accelSampleRate = 104;
+  imu.settings.gyroSampleRate = 104;
+  if (imu.begin() != IMU_SUCCESS) {
+    while (true) { Serial.println("Error al iniciar IMU"); delay(1000); }
+  }
+  Wire1.setClock(400000); // Bus interno de la Sense: I2C a 400 kHz.
+  // BDU: evita mezclar bytes de dos lecturas. IF_INC: lectura consecutiva.
+  uint8_t ctrl = 0;
+  imu.readRegister(&ctrl, 0x12);
+  imu.writeRegister(0x12, ctrl | 0x44);
+  Serial.println("IMU OK: 104 Hz. BLE: XIAO-IMU");
 
-    // LED activo a nivel bajo; el loop genera un pulso de vida cada segundo.
-    pinMode(LED_BUILTIN, OUTPUT);
-    digitalWrite(LED_BUILTIN, HIGH);
-
-    Serial.begin(kSerialBaud);
-    startBluetooth();
+  // Mas paquetes por evento y espacio para notificaciones pendientes.
+  Bluefruit.configPrphConn(23, 6, 16, 1);
+  Bluefruit.begin();
+  Bluefruit.setName("XIAO-IMU");
+  Bluefruit.Periph.setConnInterval(6, 12); // Solicita 7.5-15 ms; decide el PC.
+  Bluefruit.Periph.setConnectCallback(onConnect);
+  service.begin();
+  imuData.setProperties(CHR_PROPS_NOTIFY);
+  imuData.setPermission(SECMODE_OPEN, SECMODE_NO_ACCESS);
+  imuData.setFixedLen(sizeof(Sample));
+  imuData.begin();
+  Bluefruit.Advertising.addFlags(BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE);
+  Bluefruit.Advertising.addService(service);
+  Bluefruit.ScanResponse.addName();
+  Bluefruit.Advertising.restartOnDisconnect(true);
+  samples = xQueueCreate(64, sizeof(Sample)); // Unos 0.6 s de margen a 104 Hz.
+  if (!samples || xTaskCreate(readIMU, "imu", 1024, nullptr,
+                             tskIDLE_PRIORITY + 2, nullptr) != pdPASS) {
+    while (true) { Serial.println("Error creando tarea IMU"); delay(1000); }
+  }
+  Bluefruit.Advertising.start(0);
 }
 
 void loop() {
-    const uint32_t nowMs = millis();
-    digitalWrite(LED_BUILTIN,
-                 nowMs % kHeartbeatPeriodMs < kHeartbeatPulseMs ? LOW : HIGH);
-    if (firstSample || nowMs - lastSampleMs >= kSampleIntervalMs) {
-        firstSample = false;
-        lastSampleMs = nowMs;
-        const uint32_t batteryMv = readBatteryMv();
-        const bool usbPresent = (NRF_POWER->USBREGSTATUS & POWER_USBREGSTATUS_VBUSDETECT_Msk) != 0;
-        const bool charging = digitalRead(kChargeStatusPin) == LOW;
-        const char* state = !usbPresent ? "BATTERY" : (charging ? "CHARGING" : "USB_IDLE");
-
-        // CSV: tiempo_ms,voltaje_mV,usb_presente,chg_activo,estado.
-        char line[96];
-        snprintf(line, sizeof(line), "%lu,%lu,%u,%u,%s\r\n",
-                 static_cast<unsigned long>(nowMs), static_cast<unsigned long>(batteryMv),
-                 static_cast<unsigned>(usbPresent), static_cast<unsigned>(charging), state);
-        if (Serial) Serial.print(line);
-        if (Bluefruit.connected() && batteryUart.notifyEnabled()) batteryUart.print(line);
-    }
-
-    // No se mide corriente ni se estima un porcentaje de carga.
-    delay(10);
+  Sample s;
+  if (!Bluefruit.connected() || !imuData.notifyEnabled()) {
+    xQueueReset(samples);
+  } else if (xQueuePeek(samples, &s, 0) == pdTRUE) {
+    // No retirar la muestra hasta que BLE la acepte; reintentar si esta ocupado.
+    if (imuData.notify((uint8_t*)&s, sizeof(s))) xQueueReceive(samples, &s, 0);
+  }
+  delay(1);
 }
