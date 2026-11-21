@@ -1,0 +1,21 @@
+Archivo: MUESTRA_MANEJO_2_ALTURA_BAJA.csv.csv
+Muestras: 2201 | Duracion XIAO: 20.669 s
+Frecuencia de lectura estimada: 106.44 Hz
+Muestras recibidas / tiempo XIAO: 106.44 Hz
+Saltos detectados: 0 | Contadores repetidos: 0
+Recepcion segun reloj PC: 106.50 Hz
+Periodo por paso del contador: mediana 9.765 ms | desviacion 0.550 ms
+Intervalo maximo entre lecturas recibidas: 18.555 ms
+
+Canal            Media       Desv.      Minimo      Maximo         RMS
+ax_g           -0.5211      0.8639     -4.6380      5.4660      1.0090
+ay_g            0.6139      0.7707     -3.2900      4.8570      0.9854
+az_g           -0.0841      1.0105     -5.7720      4.9890      1.0140
+gx_dps          2.7207    204.9135   -984.8000    658.2000    204.9316
+gy_dps          0.5835     50.9618   -123.1000    152.0000     50.9651
+gz_dps         20.8006     33.1587    -75.0000    119.6000     39.1429
+
+Aceleracion incluye gravedad. No se ha filtrado ni calibrado la senal.
+La media del giro solo estima el offset si TODA la grabacion se hizo en reposo.
+Los saltos no detectan conversiones perdidas antes de leer la IMU.
+Los tiempos del PC son de recepcion; sus rafagas no implican muestreo irregular.

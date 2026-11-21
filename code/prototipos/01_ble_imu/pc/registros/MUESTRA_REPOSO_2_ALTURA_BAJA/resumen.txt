@@ -1,0 +1,21 @@
+Archivo: MUESTRA_REPOSO_2_ALTURA_BAJA.csv
+Muestras: 1400 | Duracion XIAO: 13.141 s
+Frecuencia de lectura estimada: 106.46 Hz
+Muestras recibidas / tiempo XIAO: 106.46 Hz
+Saltos detectados: 0 | Contadores repetidos: 0
+Recepcion segun reloj PC: 106.47 Hz
+Periodo por paso del contador: mediana 9.765 ms | desviacion 0.535 ms
+Intervalo maximo entre lecturas recibidas: 18.555 ms
+
+Canal            Media       Desv.      Minimo      Maximo         RMS
+ax_g           -0.6295      0.1506     -1.2770      0.6190      0.6473
+ay_g            0.6074      0.2768     -0.4690      1.6990      0.6675
+az_g            0.1355      0.4702     -4.7770      1.0990      0.4894
+gx_dps         -0.3799     94.9897   -365.8000    529.8000     94.9905
+gy_dps         -9.5320     18.6305   -103.3000     37.2000     20.9274
+gz_dps          6.4618     24.1141    -75.1000     87.7000     24.9649
+
+Aceleracion incluye gravedad. No se ha filtrado ni calibrado la senal.
+La media del giro solo estima el offset si TODA la grabacion se hizo en reposo.
+Los saltos no detectan conversiones perdidas antes de leer la IMU.
+Los tiempos del PC son de recepcion; sus rafagas no implican muestreo irregular.

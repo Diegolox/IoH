@@ -6,7 +6,7 @@ from pathlib import Path
 
 import numpy as np
 
-REGISTROS = Path(__file__).resolve().parents[1] / "pc" / "registros"
+CARPETA = Path(__file__).resolve().parent
 CHANNELS = ("ax_g", "ay_g", "az_g", "gx_dps", "gy_dps", "gz_dps")
 
 
@@ -142,30 +142,49 @@ def guardar(path, fig, summary, values, t, pc_time):
     print(f"Analisis guardado en: {output.resolve()}")
 
 
-def elegir():
-    files = sorted(REGISTROS.glob("*.csv"))
+def buscar_csv():
+    # Solo CSV junto al script: no busca fuera ni dentro de subcarpetas.
+    files = sorted(CARPETA.glob("*.csv"))
     if not files:
-        raise ValueError(f"No hay CSV en {REGISTROS}. Pasa una ruta como argumento.")
+        raise ValueError(f"No hay CSV en {CARPETA}. Coloca los registros junto a graficar.py.")
+    return files
+
+
+def elegir():
+    files = buscar_csv()
     for index, path in enumerate(files, 1):
         print(f"{index:3d}. {path.name}")
-    selected = input("Numero de archivo (Enter = ultimo): ").strip()
+    selected = input("Numero de archivo, T = todos (Enter = ultimo): ").strip()
+    if selected.lower() in ("t", "todos"):
+        return files
     number = int(selected) if selected else len(files)
     if not 1 <= number <= len(files):
         raise ValueError("Numero fuera de la lista.")
-    return files[number-1]
+    return [files[number-1]]
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("csv", nargs="*", type=Path, help="Uno o varios CSV; sin rutas muestra un menu.")
+    parser.add_argument("csv", nargs="*", type=Path, help="Nombres de CSV de esta carpeta; sin nombres muestra un menu.")
+    parser.add_argument("--todos", action="store_true", help="Analiza todos los CSV junto al script.")
     parser.add_argument("--guardar", action="store_true", help="Compatible con versiones anteriores; ahora siempre guarda.")
     parser.add_argument("--sin-ventana", action="store_true", help="Guarda el analisis sin abrir las ventanas.")
     args = parser.parse_args()
+    if args.todos and args.csv:
+        parser.error("Usa rutas concretas o --todos, no ambas opciones.")
     if args.sin_ventana:
         import matplotlib
         matplotlib.use("Agg")
     try:
-        paths = args.csv or [elegir()]
+        if args.csv:
+            paths = []
+            for name in args.csv:
+                path = (CARPETA / name).resolve()
+                if path.parent != CARPETA or path.suffix.lower() != ".csv":
+                    raise ValueError("Solo se admiten CSV situados junto a graficar.py.")
+                paths.append(path)
+        else:
+            paths = buscar_csv() if args.todos else elegir()
     except (ValueError, EOFError) as error:
         parser.error(str(error))
     failures = 0

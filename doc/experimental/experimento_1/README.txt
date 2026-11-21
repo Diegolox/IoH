@@ -1,0 +1,2 @@
+Se ha elaborado a 21/11/2026 un experimento en el que se ha colocado el sensor prototipo en el stick de hockey de diego. El diseño mecánico parece que agarra sin problemas, no se nota gran diferencia de peso pese a colocarse en la parte de abajo del palo. Se han tomado de forma rudimentaria medidas a 100 Hz y se ha analizado la señal obtenida. Parece haber diferencia entre medidas de reposo y de manejo de puck de hockey hielo en suelo de plástico.
+No satura por ahora el sensor.
