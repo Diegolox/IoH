@@ -22,7 +22,7 @@ Detección de gestos de hockey línea mediante un sensor en el stick.
 | Muestreo | **104 Hz**, frecuencia nativa del sensor. |
 | Batería | LiPo de 3,7 V y 250 mAh. |
 | Montaje | Carcasa de plástico con electrónica y batería, encintada al stick entre las manos. |
-| Registro | Continuo; JSON por Bluetooth al PC. Todas las muestras se guardan. |
+| Registro | Prototipo actual: paquetes binarios por BLE al PC; las muestras recibidas se guardan en CSV durante cada sesión entre `start` y `stop`. El registro continuo del protocolo queda pendiente de implementar. |
 | Metadatos | Jugador, sesión, lateralidad, stick, posición y orientación del montaje. |
 
 ## Etiquetado y clasificación

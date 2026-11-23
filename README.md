@@ -4,6 +4,8 @@ Internet for Hockey es un proyecto de LAB Sensores que explora la detección de 
 
 ## Documentación
 
+Para retomar el trabajo con una herramienta de IA, leer [AGENTS.md](AGENTS.md) y [ESTADO_PROYECTO.md](ESTADO_PROYECTO.md).
+
 | Área | Documentos |
 | --- | --- |
 | Estado de la cuestión | [Primer entregable y criterios PICOS](doc/state_of_art/README.md) |
