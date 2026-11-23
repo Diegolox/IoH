@@ -8,7 +8,8 @@ y generar gráficas para revisar los resultados.
 | Carpeta | Contenido |
 | --- | --- |
 | `prototipos/01_ble_imu/` | Primer prototipo: firmware XIAO y receptor del PC. |
-| `herramientas/graficar/` | Herramienta compartida para analizar CSV. |
+| `prototipos/02_ble_imu/` | Adquisición BLE con etiquetado automático por teclas mantenidas en Python (Windows). |
+| `herramientas/graficar/` | Gráficas de movimiento, comparación de gestos y frecuencia de recepción. |
 
 Cada prototipo contiene su proyecto PlatformIO en `xiao/`, su programa de PC
 en `pc/` y un README breve. Para una nueva prueba que cambie el funcionamiento,
@@ -19,6 +20,6 @@ Los experimentos se documentan en `../doc/experimental/`, indicando el prototipo
 la versión de Git, los rangos y el montaje utilizados. Los registros existentes
 se conservan en `prototipos/01_ble_imu/pc/registros/`.
 
-Para graficar, coloca los CSV junto a `herramientas/graficar/graficar.py`.
-Esta herramienta solo busca en su propia carpeta y genera una carpeta de análisis
-por CSV. Los resultados se pueden incorporar después al experimento correspondiente.
+Para graficar, indica las rutas de los CSV a `herramientas/graficar/graficar.py`
+o usa su menú para seleccionar archivos de la carpeta de la herramienta.
+Con `--salida` puedes guardar las figuras en el experimento correspondiente.
