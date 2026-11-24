@@ -39,3 +39,7 @@ Un registro automático permitiría al entrenador analizar el rendimiento del eq
 ## Entregable del Paso 3
 
 [Informe de extracción y análisis](entregable-paso-3.md) · [Hoja de cálculo con indicadores y nivel de verificación](matriz-de-evidencia-hockey-inercial.xlsx)
+
+## Entregable del Paso 5
+
+[Borrador del artículo con estructura IEEE](borrador-articulo-ieee.md). La tabla recoge las siete publicaciones evaluadas y el texto señala los recuentos que faltan para cerrar PRISMA.
