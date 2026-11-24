@@ -1,6 +1,6 @@
 # Estado del proyecto IoH
 
-Actualizado: **23/11/2026**. Memoria inicial contrastada con los archivos locales; las pruebas históricas se atribuyen a su documentación y no se han repetido en esta sesión.
+Actualizado: **24/11/2026**. Memoria inicial contrastada con los archivos locales; las pruebas históricas se atribuyen a su documentación y no se han repetido en esta sesión.
 
 ## Objetivo y situación actual
 
@@ -66,6 +66,7 @@ Firmware: abrir `code/prototipos/01_ble_imu/xiao/` en PlatformIO; configuración
 
 ## Comprobaciones y límites
 
+- **24/11/2026, entregable 3 en el Word del profesor:** incorporada una tabla de síntesis de las siete publicaciones antes del Paso 4 en `doc/doc_prof/metodologia_EdC.docx`, con montaje, muestreo, método, resultados, evaluación, localizadores y nivel de verificación. Remite al Excel de extracción completa y mantiene visibles los pendientes y el alcance metodológico o parcial de algunos artículos. Comprobadas las siete filas, la apertura estructural del DOCX y la conservación del contenido anterior y de las demás partes del paquete. No se completó la revisión visual de paginación: el renderizador no dispone de LibreOffice y se detuvo el intento con Word a petición de Diego, que indicó no tomar control de su PC. No se buscaron publicaciones nuevas; queda por resolver el mínimo de diez papers de la tabla final y cerrar el cribado antes de PRISMA.
 - **23/11/2026, conclusiones del experimento 2:** cuatro capturas, nueve tramos de manejo y unos 66,5 s etiquetados como manejo. El giro mediano fue mayor durante el manejo en todas las tomas, pero hubo picos de giro en `undefined`. Se documentó el carácter exploratorio de la comparación entre pastillas y la falta de etiquetas de pase, recepción y tiro.
 - **23/11/2026, resumen por prueba:** se añadieron paneles separados de aceleración X/Y/Z y resúmenes de los seis ejes y las dos magnitudes, por captura y por etiqueta. Se generó el índice de las cuatro pruebas del experimento 2. Se verificaron esas cuatro entradas, un CSV sin etiquetas, la opción de solo frecuencia y la integridad de los originales.
 - **23/11/2026, gráficas de movimiento:** se generaron figuras para los cuatro CSV etiquetados del prototipo 02, que contienen manejo y `undefined`. La comparación alinea por el inicio de la etiqueta y usa escalas comunes. Se comprobó un CSV histórico sin etiquetas, el modo `--solo-frecuencia` y que los CSV de entrada conservaran sus hashes.
