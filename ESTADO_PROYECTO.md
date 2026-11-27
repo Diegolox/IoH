@@ -1,6 +1,6 @@
 # Estado del proyecto IoH
 
-Actualizado: **24/11/2026**. Memoria inicial contrastada con los archivos locales; las pruebas históricas se atribuyen a su documentación y no se han repetido en esta sesión.
+Actualizado: **27/11/2026**. Las pruebas históricas se atribuyen a su documentación.
 
 ## Objetivo y situación actual
 
@@ -10,12 +10,17 @@ Existe un primer prototipo de adquisición con XIAO nRF52840 Sense, receptor Pyt
 
 Se ha creado `code/prototipos/02_ble_imu/` a partir del prototipo 01, sin registros ni artefactos locales. Conserva el firmware y modifica el receptor Python para Windows: cada notificación BLE recibe `label` según la tecla mantenida (P=`pase`, R=`recepcion`, T=`tiro`, M=`manejo`; ninguna o varias=`undefined`). Guarda la etiqueta en el CSV y la muestra en terminal. Espacio inicia/cierra cada CSV y Ctrl+C termina. La consulta de etiquetas es global en Windows; los controles de terminal requieren foco. Diego acepta el desfase del etiquetado al llegar los datos al PC, sin compensación temporal.
 
+El prototipo 03 añade al panel la carga aproximada de la LiPo de 3,7 V y 250 mAh y un aviso al 25 % estimado o menos. El firmware y el receptor se han compilado. Falta probar el conjunto con la XIAO en batería.
+
+El re-etiquetador permite corregir con el ratón las etiquetas de los CSV de captura. Guarda en la ruta abierta y conserva una copia previa a la primera edición para mantener la trazabilidad.
+
 ## Configuración y decisiones documentadas
 
 - Etiquetado de reposo en el prototipo 02: mantener Q con el palo quieto guarda `reposo`. Al soltarla, o si se pulsan varias teclas de etiqueta, se guarda `undefined`. La herramienta de gráficas distingue ambas etiquetas. Los CSV anteriores al cambio conservan su etiquetado original.
 - Prototipo actual: acelerómetro y giróscopo a **104 Hz nominales**; firmware Arduino mediante PlatformIO y core Seeed nRF52, sin mbed.
 - El código actual configura **±16 g y ±2000 °/s**. Estos valores no acreditan los rangos usados en capturas anteriores, que no los incluyen como metadatos.
 - Transporte implementado: BLE binario de 18 bytes, formato little-endian `<IH6h`, con tiempo de la XIAO, contador y seis ejes. Receptor y firmware coinciden en el formato. El PC guarda CSV mediante `start` y `stop` en el 01 y Espacio en el 02; este último añade `label` al recibir cada notificación, antes de la cola de visualización.
+- Batería en el 03: ADC fuera de la tarea de la IMU al arrancar y cada 10 s, con una curva de descarga orientativa. El PC consulta Battery Level al conectar y cada 10 s, independientemente de la recepción de muestras. El porcentaje se muestra en el panel y el CSV conserva su esquema.
 - Sin filtrado ni calibración; la aceleración incluye gravedad. El firmware no usa FIFO de la IMU y el contador no permite detectar conversiones perdidas antes de leerlas.
 - El protocolo plantea etiquetado con teclado, separación por jugador antes de generar ventanas, entrenamiento con Edge Impulse e inferencia Python en PC. Reserva a Diego para test final. Son decisiones de diseño documentadas, pendientes de implementación y validación; la ventana de 2 s es una configuración inicial, no definitiva.
 - La ubicación prevista entre las manos difiere de la colocación inferior usada en el experimento 1. Conservar esta distinción al interpretar resultados.
@@ -29,7 +34,9 @@ Se ha creado `code/prototipos/02_ble_imu/` a partir del prototipo 01, sin regist
 | [code/prototipos/01_ble_imu/](code/prototipos/01_ble_imu/) | Firmware en `xiao/`; receptor `pc/imu_terminal.py`. |
 | [code/prototipos/02_ble_imu/](code/prototipos/02_ble_imu/) | Firmware del 01 y receptor con etiquetado por teclas mantenidas en Python. |
 | [code/prototipos/02_ble_imu/pc/compilar.cmd](code/prototipos/02_ble_imu/pc/compilar.cmd) | Genera `IoH-Captura.exe` para abrir el panel de captura por doble clic en Windows. |
+| [code/prototipos/03_ble_imu/](code/prototipos/03_ble_imu/) | Firmware y receptor con la batería en la primera línea del panel. Ejecutable local en `pc/IoH-Captura-03.exe`. |
 | [code/herramientas/graficar/](code/herramientas/graficar/) | Gráficas de movimiento y frecuencia de recepción, con comparación de tramos etiquetados. |
+| [code/herramientas/re-etiquetador/](code/herramientas/re-etiquetador/) | Editor gráfico de etiquetas. En Windows se abre con `abrir_re_etiquetador.cmd` y usa Python 3 con Tkinter. |
 | [doc/experimental/protocolo-experimental.md](doc/experimental/protocolo-experimental.md) | Diseño previsto y decisiones pendientes del piloto. |
 | [doc/experimental/README.md](doc/experimental/README.md) | Resumen breve de los resultados de los experimentos 1 y 2. |
 | [doc/experimental/experimento_1/README.md](doc/experimental/experimento_1/README.md) | Montaje, capturas, resultados y límites de la prueba del 21/11/2026. |
@@ -67,6 +74,8 @@ Firmware: abrir `code/prototipos/01_ble_imu/xiao/` en PlatformIO; configuración
 
 ## Comprobaciones y límites
 
+- **27/11/2026, re-etiquetador:** cuatro pruebas del editor correctas. Se simularon clic, arrastre, zoom, guardado y deshacer en Tk sobre copias de las cuatro capturas etiquetadas del 02. Se verificó que solo cambiaran los campos seleccionados y que la copia inicial coincidiera con el original. No se probó el guardado con el CSV abierto en Excel.
+- **27/11/2026, prototipo 03:** compilación PlatformIO para XIAO nRF52840 Sense con la plataforma Seeed instalada (1.1.1). El receptor pasó seis pruebas, incluidos el aviso bajo, la indicación cuando falta la característica BLE y la ubicación de la batería en un panel de 60 columnas. Se comprobó la vista previa de `IoH-Captura-03.exe` con una batería simulada al 23 %.
 - **24/11/2026, entregable 4:** evaluadas las siete publicaciones con los ocho criterios de la guía. La pestaña «Calidad y sesgo» de la matriz incluye 56 justificaciones con páginas y puntuaciones por fórmula. El resumen quedó antes del Paso 5 en el Word original `doc/doc_prof/metodologia_EdC.docx`. Hardegger obtuvo la menor puntuación (4,0/8). Hardegger, Shahar (2020) y Vleugels cumplen plenamente tres criterios y quedan señalados para la discusión. Se verificaron los datos y la conservación del contenido previo. La paginación del Word queda sin revisión visual por falta de LibreOffice.
 - **24/11/2026, entregable 3 en el Word del profesor:** incorporada una tabla de síntesis de las siete publicaciones antes del Paso 4 en `doc/doc_prof/metodologia_EdC.docx`, con montaje, muestreo, método, resultados, evaluación, localizadores y nivel de verificación. Remite al Excel de extracción completa y mantiene visibles los pendientes y el alcance metodológico o parcial de algunos artículos. Comprobadas las siete filas, la apertura estructural del DOCX y la conservación del contenido anterior y de las demás partes del paquete. No se completó la revisión visual de paginación: el renderizador no dispone de LibreOffice y se detuvo el intento con Word a petición de Diego, que indicó no tomar control de su PC. No se buscaron publicaciones nuevas; queda por resolver el mínimo de diez papers de la tabla final y cerrar el cribado antes de PRISMA.
 - **23/11/2026, conclusiones del experimento 2:** cuatro capturas, nueve tramos de manejo y unos 66,5 s etiquetados como manejo. El giro mediano fue mayor durante el manejo en todas las tomas, pero hubo picos de giro en `undefined`. Se documentó el carácter exploratorio de la comparación entre pastillas y la falta de etiquetas de pase, recepción y tiro.
@@ -79,7 +88,6 @@ Firmware: abrir `code/prototipos/01_ble_imu/xiao/` en PlatformIO; configuración
 - **23/11/2026, revisión local:** repositorio Git en esta carpeta, rama `main`, sin cambios locales al comenzar. No existían `AGENTS.md` ni `ESTADO_PROYECTO.md` en el proyecto. Se revisaron README, protocolo, experimento 1, notas de carcasa, dependencias, configuración PlatformIO y formato BLE en firmware y receptor.
 - **Resultado histórico documentado, 21/11/2026:** cuatro capturas con aproximadamente 106,4 Hz y cero saltos del contador. No recalculado en esta sesión. Las capturas denominadas reposo contienen movimiento y no son una referencia de inmovilidad continua ni clases temporales limpias.
 - Las notas de carcasa indican correcciones aplicadas y encaje comprobado en Fusion; no se ha verificado el modelo ni el montaje físico en esta sesión.
-- No se han compilado ni cargado firmware, probado BLE, entrenado modelos o repetido experimentos. La bibliografía y las hojas de cálculo no se han auditado en esta tarea de memoria.
 
 ## Pendientes y siguiente paso
 
@@ -87,4 +95,4 @@ Firmware: abrir `code/prototipos/01_ble_imu/xiao/` en PlatformIO; configuración
 2. Comprobar estabilidad del montaje y saturación para los gestos objetivo; verificar físicamente espacio para interruptor/cables, acceso USB y apriete de tornillos según las notas de carcasa.
 3. Validar el etiquetado del prototipo 02 con teclado y BLE reales; concretar jugadores, cantidad de datos, métricas y tratamiento de ventanas mixtas antes de entrenar. Mantener el test de Diego separado del ajuste.
 
-**Siguiente paso:** probar `02_ble_imu/pc/imu_terminal.py` con la XIAO y verificar P/R/T/M, retorno a `undefined` al soltar y apertura/cierre con Espacio. Después, preparar la captura piloto con los metadatos indicados. No tratar las cuatro capturas exploratorias como un conjunto ya validado para clasificar gestos.
+**Siguiente paso:** probar el prototipo 03 con la XIAO alimentada por batería. Comparar tasa recibida, intervalos y saltos frente al 02, verificar P/R/T/M/Q y los controles de grabación, y medir cuánto tarda en apagarse desde el aviso. Después, preparar la captura piloto con los metadatos indicados.

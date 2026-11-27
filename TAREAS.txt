@@ -1,0 +1,3 @@
+1. Hablar con gente para pillar datos
+2. Documento que resuma decisiones tomadas
+3. Definir ventanas de tiempo

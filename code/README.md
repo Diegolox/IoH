@@ -9,7 +9,9 @@ y generar gráficas para revisar los resultados.
 | --- | --- |
 | `prototipos/01_ble_imu/` | Primer prototipo: firmware XIAO y receptor del PC. |
 | `prototipos/02_ble_imu/` | Adquisición BLE con etiquetado automático por teclas mantenidas en Python (Windows). |
+| [`prototipos/03_ble_imu/`](prototipos/03_ble_imu/README.md) | Panel de captura de Windows `IoH-Captura-03.exe` con nivel estimado de batería y aviso. |
 | `herramientas/graficar/` | Gráficas de movimiento, comparación de gestos y frecuencia de recepción. |
+| [`herramientas/re-etiquetador/`](herramientas/re-etiquetador/README.md) | Corrección con el ratón de etiquetas por muestra o por tramo, con guardado en el CSV y copia de la captura original. |
 
 Cada prototipo contiene su proyecto PlatformIO en `xiao/`, su programa de PC
 en `pc/` y un README breve. Para una nueva prueba que cambie el funcionamiento,
