@@ -10,7 +10,7 @@ Existe un primer prototipo de adquisición con XIAO nRF52840 Sense, receptor Pyt
 
 Se ha creado `code/prototipos/02_ble_imu/` a partir del prototipo 01, sin registros ni artefactos locales. Conserva el firmware y modifica el receptor Python para Windows: cada notificación BLE recibe `label` según la tecla mantenida (P=`pase`, R=`recepcion`, T=`tiro`, M=`manejo`; ninguna o varias=`undefined`). Guarda la etiqueta en el CSV y la muestra en terminal. Espacio inicia/cierra cada CSV y Ctrl+C termina. La consulta de etiquetas es global en Windows; los controles de terminal requieren foco. Diego acepta el desfase del etiquetado al llegar los datos al PC, sin compensación temporal.
 
-El prototipo 03 añade al panel la carga aproximada de la LiPo de 3,7 V y 250 mAh y un aviso al 25 % estimado o menos. El firmware y el receptor se han compilado. Falta probar el conjunto con la XIAO en batería.
+El prototipo 03 añade al panel la carga aproximada de la LiPo de 3,7 V y 250 mAh y un aviso al 25 % estimado o menos. El firmware y el receptor se han compilado. El equipo ha comprobado en la XIAO real el envío y la recepción de datos por BLE con el firmware nuevo. Queda por documentar la versión exacta cargada y probar el conjunto alimentado por batería.
 
 El re-etiquetador permite corregir con el ratón las etiquetas de los CSV de captura. Guarda en la ruta abierta y conserva una copia previa a la primera edición para mantener la trazabilidad.
 
@@ -74,6 +74,7 @@ Firmware: abrir `code/prototipos/01_ble_imu/xiao/` en PlatformIO; configuración
 
 ## Comprobaciones y límites
 
+- **27/11/2026, prueba física comunicada por Diego:** la XIAO con el firmware nuevo se conectó por BLE y el envío y la recepción de datos funcionaron durante la prueba. La primera prueba manual del re-etiquetador fue favorable. Queda por comprobar el ciclo completo de captura, corrección, guardado y reapertura con un CSV nuevo.
 - **27/11/2026, re-etiquetador:** cuatro pruebas del editor correctas. Se simularon clic, arrastre, zoom, guardado y deshacer en Tk sobre copias de las cuatro capturas etiquetadas del 02. Se verificó que solo cambiaran los campos seleccionados y que la copia inicial coincidiera con el original. No se probó el guardado con el CSV abierto en Excel.
 - **27/11/2026, prototipo 03:** compilación PlatformIO para XIAO nRF52840 Sense con la plataforma Seeed instalada (1.1.1). El receptor pasó seis pruebas, incluidos el aviso bajo, la indicación cuando falta la característica BLE y la ubicación de la batería en un panel de 60 columnas. Se comprobó la vista previa de `IoH-Captura-03.exe` con una batería simulada al 23 %.
 - **24/11/2026, entregable 4:** evaluadas las siete publicaciones con los ocho criterios de la guía. La pestaña «Calidad y sesgo» de la matriz incluye 56 justificaciones con páginas y puntuaciones por fórmula. El resumen quedó antes del Paso 5 en el Word original `doc/doc_prof/metodologia_EdC.docx`. Hardegger obtuvo la menor puntuación (4,0/8). Hardegger, Shahar (2020) y Vleugels cumplen plenamente tres criterios y quedan señalados para la discusión. Se verificaron los datos y la conservación del contenido previo. La paginación del Word queda sin revisión visual por falta de LibreOffice.
@@ -93,6 +94,6 @@ Firmware: abrir `code/prototipos/01_ble_imu/xiao/` en PlatformIO; configuración
 
 1. Preparar un piloto reproducible: registrar versión de Git, rangos, posición exacta y orientación del dispositivo; incluir un tramo de reposo continuo y anotaciones temporales verificables.
 2. Comprobar estabilidad del montaje y saturación para los gestos objetivo; verificar físicamente espacio para interruptor/cables, acceso USB y apriete de tornillos según las notas de carcasa.
-3. Validar el etiquetado del prototipo 02 con teclado y BLE reales; concretar jugadores, cantidad de datos, métricas y tratamiento de ventanas mixtas antes de entrenar. Mantener el test de Diego separado del ajuste.
+3. Validar el etiquetado del prototipo actual con el teclado durante una captura real; concretar jugadores, cantidad de datos, métricas y tratamiento de ventanas mixtas antes de entrenar. Mantener el test de Diego separado del ajuste.
 
-**Siguiente paso:** probar el prototipo 03 con la XIAO alimentada por batería. Comparar tasa recibida, intervalos y saltos frente al 02, verificar P/R/T/M/Q y los controles de grabación, y medir cuánto tarda en apagarse desde el aviso. Después, preparar la captura piloto con los metadatos indicados.
+**Siguiente paso:** hacer una captura corta con el 03 alimentado por batería, registrar la versión cargada y comprobar P/R/T/M/Q y los controles de grabación. Corregir un tramo del CSV, guardar, reabrir y comprobar que se conserva la copia original. Comparar tasa recibida, intervalos y saltos frente al 02 y medir el tiempo entre el aviso de batería y el apagado antes del piloto.
